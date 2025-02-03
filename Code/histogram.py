@@ -11,8 +11,8 @@ def histogram(source_text):
     with open(source_text, "r") as f:
         for line in f:
             for word in line.split():
-                word = word.lower()
-                histogram[word] = histogram.get(word, 0) + 1 
+                lowered_word = word.lower()
+                histogram[lowered_word] = histogram.get(word, 0) + 1 
     return histogram
 
 def unique_words(histogram):
@@ -28,12 +28,12 @@ def frequency(word, histogram):
 #     return sorted(histogram.items(), key=get_value, reverse=True)
 
 
-
-print(unique_words(histogram(get_path("sample.txt"))))
-print("="*50)
-print(histogram(get_path("sample.txt")))
-print("="*50)
-print(frequency("the", histogram(get_path("sample.txt"))))
-print(frequency("aaaa", histogram(get_path("sample.txt"))))
-# print(sorted_histogram(histogram(get_path("sample.txt"))))
-# print("="*50)
+if __name__ == "__main__":
+    print(unique_words(histogram(get_path("sample.txt"))))
+    print("="*50)
+    print(histogram(get_path("sample.txt")))
+    print("="*50)
+    print(frequency("the", histogram(get_path("sample.txt"))))
+    print(frequency("aaaa", histogram(get_path("sample.txt"))))
+    # print(sorted_histogram(histogram(get_path("sample.txt"))))
+    # print("="*50)
