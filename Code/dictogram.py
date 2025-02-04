@@ -31,22 +31,42 @@ class Dictogram(dict):
         """Return frequency count of given word, or 0 if word is not found."""
         return self.get(word, 0)
 
+
     def sample(self):
         """Return a word from this histogram, randomly sampled by weighting
         each word's probability of being chosen by its observed frequency."""
 
-        cumulative_weights_list = []
+        cumulative_weights_dict = {}
         cumulative_weight = 0
 
         for word, count in self.items():
             cumulative_weight += count
-            cumulative_weights_list.append((word, cumulative_weight))
+            cumulative_weights_dict[word] = cumulative_weight
 
         rand_pick = random.randint(1, self.tokens)
 
-        for word, cumulative_weight in cumulative_weights_list:
+        for word, cumulative_weight in cumulative_weights_dict.items():
             if rand_pick <= cumulative_weight:
                 return word
+
+
+
+    # def sample(self):
+    #     """Return a word from this histogram, randomly sampled by weighting
+    #     each word's probability of being chosen by its observed frequency."""
+
+    #     cumulative_weights_list = []
+    #     cumulative_weight = 0
+
+    #     for word, count in self.items():
+    #         cumulative_weight += count
+    #         cumulative_weights_list.append((word, cumulative_weight))
+
+    #     rand_pick = random.randint(1, self.tokens)
+
+    #     for word, cumulative_weight in cumulative_weights_list:
+    #         if rand_pick <= cumulative_weight:
+    #             return word
 
 
 
