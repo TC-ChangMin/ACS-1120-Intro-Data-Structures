@@ -48,29 +48,8 @@ class Dictogram(dict):
         for word, cumulative_weight in cumulative_weights_dict.items():
             if rand_pick <= cumulative_weight:
                 return word
-
-
-
-    # def sample(self):
-    #     """Return a word from this histogram, randomly sampled by weighting
-    #     each word's probability of being chosen by its observed frequency."""
-
-    #     cumulative_weights_list = []
-    #     cumulative_weight = 0
-
-    #     for word, count in self.items():
-    #         cumulative_weight += count
-    #         cumulative_weights_list.append((word, cumulative_weight))
-
-    #     rand_pick = random.randint(1, self.tokens)
-
-    #     for word, cumulative_weight in cumulative_weights_list:
-    #         if rand_pick <= cumulative_weight:
-    #             return word
-
-
-
-
+            
+            
 def print_histogram(word_list):
     print()
     print('Histogram:')
