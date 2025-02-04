@@ -20,32 +20,47 @@ class Listogram(list):
 
     def add_count(self, word, count=1):
         """Increase frequency count of given word by given count amount."""
-        if word in self:
-            self[word] += count
+        for item in self:
+            if item[0] == word:
+                item[1] += count
+                break
         else:
-            self[word] = count
-            self.types += 1
+            self.append([word, count])
+        
+        self.types += (word not in [item[0] for item in self])
         self.tokens += count
 
     def frequency(self, word):
         """Return frequency count of given word, or 0 if word is not found."""
-        return self.get(word, 0)
+        for item in self:
+            if item[0] == word:
+                return item[1]
+        return 0
 
     def __contains__(self, word):
         """Return boolean indicating if given word is in this histogram."""
-        # TODO: Check if word is in this histogram
-        return word in self 
+        return any(item[0] == word for item in self)
 
     def index_of(self, target):
         """Return the index of entry containing given target word if found in
         this histogram, or None if target word is not found."""
-        # TODO: Implement linear search to find index of entry with target word
+        for i, item in enumerate(self):
+            if item[0] == target:
+                return i
+        return None
 
     def sample(self):
         """Return a word from this histogram, randomly sampled by weighting
         each word's probability of being chosen by its observed frequency."""
-        # TODO: Randomly choose a word based on its frequency in this histogram
+        total_count = sum(item[1] for item in self)
+        rand_choice = random.randint(1, total_count)
+        cumulative_count = 0
 
+        for item in self:
+            cumulative_count += item[1]
+            if rand_choice <= cumulative_count:
+                return item[0]
+        return None
 
 def print_histogram(word_list):
     print()
