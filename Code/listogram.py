@@ -20,14 +20,13 @@ class Listogram(list):
 
     def add_count(self, word, count=1):
         """Increase frequency count of given word by given count amount."""
-        for item in self:
-            if item[0] == word:
-                item[1] += count
+        for i, (current_word, current_count) in enumerate(self):
+            if current_word == word:
+                self[i] = (current_word, current_count + count)
                 break
         else:
-            self.append([word, count])
-        
-        self.types += (word not in [item[0] for item in self])
+            self.append((word, count))
+            self.types += 1
         self.tokens += count
 
     def frequency(self, word):
