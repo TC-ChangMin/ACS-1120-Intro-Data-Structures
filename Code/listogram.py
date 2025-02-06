@@ -25,7 +25,7 @@ class Listogram(list):
                 self[i] = (current_word, current_count + count)
                 break
         else:
-            self.append((word, count))
+            self.append([word, count])
             self.types += 1
         self.tokens += count
 
