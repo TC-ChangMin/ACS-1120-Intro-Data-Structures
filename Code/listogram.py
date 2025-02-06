@@ -22,7 +22,7 @@ class Listogram(list):
         """Increase frequency count of given word by given count amount."""
         for i, (current_word, current_count) in enumerate(self):
             if current_word == word:
-                self[i] = (current_word, current_count + count)
+                self[i] = [current_word, current_count + count]
                 break
         else:
             self.append([word, count])
