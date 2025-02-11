@@ -5,7 +5,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), 'Code'))
 
 """Main script, uses other modules to generate sentences."""
 from flask import Flask
-from dictogram import Dictogram
+from Code.dictogram import Dictogram
 
 
 app = Flask(__name__)
