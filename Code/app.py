@@ -1,5 +1,6 @@
 """Main script, uses other modules to generate sentences."""
 from flask import Flask
+from dictogram import Dictogram
 
 
 app = Flask(__name__)
@@ -10,8 +11,18 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    """Route that returns a web page containing the generated text."""
-    return "<p>TODO: Return a word here!</p>"
+    def load_corpus(filepath='data/corpus.txt'):
+        with open(filepath, 'r') as file:
+            words = file.read().split()
+        return words
+
+    def generate_sentence(word_count):
+        words = load_corpus()
+        histogram = Dictogram(words)
+        sentence = [histogram.sample() for _ in range(word_count)]
+        return ' '.join(sentence).capitalize() + '.'
+    
+    return generate_sentence(50)
 
 
 if __name__ == "__main__":
