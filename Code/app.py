@@ -1,3 +1,8 @@
+import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), 'Code'))
+
 """Main script, uses other modules to generate sentences."""
 from flask import Flask
 from dictogram import Dictogram
@@ -23,7 +28,6 @@ def home():
         return ' '.join(sentence).capitalize() + '.'
     
     return generate_sentence(50)
-
 
 if __name__ == "__main__":
     """To run the Flask server, execute `python app.py` in your terminal.
