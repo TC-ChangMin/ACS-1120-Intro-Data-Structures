@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    def load_corpus(filepath='data/corpus.txt'):
+    def load_corpus(filepath='Code/data/corpus.txt'):
         with open(filepath, 'r') as file:
             words = file.read().split()
         return words
